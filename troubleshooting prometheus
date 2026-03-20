@@ -2,7 +2,7 @@ sudo systemctl status prometheus
 error msg="Unable to start web listener"
 err="listen tcp 0.0.0.0:9090: bind: address already in use"
 
-#confirm whats using port 9090
+## confirm whats using port 9090
 sudo ss -tulpn | grep 9090
 
 sudo vi /etc/systemd/system/prometheus.service
@@ -11,6 +11,13 @@ ExecStart=/usr/local/bin/prometheus --config.file=/etc/prometheus/prometheus.yml
 
 sudo systemctl daemon-reload
 sudo systemctl restart prometheus
-
-#Access at:
+ 
+## Access at:
 http://<server-ip>:9091
+
+
+## Prometheus failed with an INVALIDARGUMENT error due to YAML syntax issues in prometheus.yml.
+## I validated and corrected the configuration using promtool.
+## Port 9090 was already bound by an existing process "cockpit". 
+## So i changed the listening port in the config files /etc/systemd/system/prometheus.service and /etc/prometheus/prometheus.yml
+## from 9090 to 9091.
