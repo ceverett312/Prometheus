@@ -19,3 +19,16 @@ sudo chown -R prometheus:prometheus /etc/prometheus
 
 #Edit configuration.
 sudo vi /etc/prometheus/prometheus.yml
+
+#Edit systemd service file.
+sudo vi /etc/systemd/system/prometheus.service
+
+sudo systemctl daemon-reload
+sudo systemctl enable --now prometheus
+
+sudo firewall-cmd --add-port=9090/tcp --permanent
+sudo firewall-cmd --add-port=9100/tcp --permanent
+sudo firewall-cmd --reload
+
+systemctl status prometheus
+systemctl status node_exporter
