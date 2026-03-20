@@ -3,3 +3,14 @@ error msg="Unable to start web listener"
 err="listen tcp 0.0.0.0:9090: bind: address already in use"
 
 #confirm whats using port 9090
+sudo ss -tulpn | grep 9090
+
+sudo vi /etc/systemd/system/prometheus.service
+ExecStart=/usr/local/bin/prometheus --config.file=/etc/prometheus/prometheus.yml --storage.tsdb.path=/var/lib/prometheus
+--web.listen-address=:9091
+
+sudo systemctl daemon-reload
+sudo systemctl restart prometheus
+
+#Access at:
+http://<server-ip>:9091
