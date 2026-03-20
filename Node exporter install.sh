@@ -5,12 +5,12 @@ tar xvf node_exporter-1.7.0.linux-amd64.tar.gz
 sudo mv node_exporter-1.7.0.linux-amd64/node_exporter /usr/local/bin/
 sudo chown node_exporter:node_exporter /usr/local/bin/node_exporter
 
-#create systemd service
+#create systemd service.
 sudo nano /etc/systemd/system/node_exporter.service
 
-#start and enable
+#start and enable.
 sudo systemctl daemon-reload
 sudo systemctl enable --now node_exporter
 
-#verify
+#verify.
 curl http://localhost:9100/metrics
