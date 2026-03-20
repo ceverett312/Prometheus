@@ -11,4 +11,6 @@ sudo nano /etc/systemd/system/node_exporter.service
 #start and enable
 sudo systemctl daemon-reload
 sudo systemctl enable --now node_exporter
+
+#verify
 curl http://localhost:9100/metrics
